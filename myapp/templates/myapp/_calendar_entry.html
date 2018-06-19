@@ -4,4 +4,6 @@
         <h4> {{entry.date | date:"M d, y"}}</h2>
         <p>{{entry.description | truncatechars:150}}</p>
         <button onclick="window.location='{% url 'details' pk=entry.id %}'	"  class='btn btn-primary'> Details </button>
+        <h3>{{ entry.id }}</h3>
+        <button data-id="{{ entry.id }}" onclick="deleteCalendarEntry(this)" class='btn btn-danger'> Details </button>
     </div>

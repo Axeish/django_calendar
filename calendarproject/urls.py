@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^$',views.index, name='index'),
     url(r'^entry/(?P<pk>\d+)/$' , views.details,name='details'),
     url(r'^entry/add',views.add,name='add'),
+     url(r'^entry/delete/(?P<pk>\d+)/$',views.delete,name='delete'),
     url(r'^admin/', admin.site.urls),
 ]

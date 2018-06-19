@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Entry
 from .forms import EntryForm
 from django.http import HttpResponseRedirect
+
 # Create your views here.
 
 
@@ -34,6 +35,10 @@ def add(request):
         form = EntryForm()
 
     return render(request, "myapp/form.html", {'form': form})	
-
+def delete(request,pk):
+	if request.method == 'DELETE':
+	    entry = get_object_or_404(Entry,pk=pk)
+	    entry.delete()
+	return HttpResponseRedirect('/')
 
 
