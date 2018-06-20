@@ -1,3 +1,12 @@
 .calendar_entry{
    background-color: #eeeeee;
 }
+body, html {
+	width:100%;
+	display: grid;
+}
+
+.page-center {
+	margin:auto;
+	
+}

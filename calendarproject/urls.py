@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 from myapp import views
 urlpatterns = [
     url(r'^$',views.index, name='index'),
+    url(r'^calendar',views.calendar,name='calendar'),
+    url(r'^signup', views.signup,name='signup'),
+    url(r'^login', auth_views.login, name='login'),
+    url(r'^logout',auth_views.logout, {'next_page' : '/'}, name='logout'),
     url(r'^entry/(?P<pk>\d+)/$' , views.details,name='details'),
     url(r'^entry/add',views.add,name='add'),
      url(r'^entry/delete/(?P<pk>\d+)/$',views.delete,name='delete'),

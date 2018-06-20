@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Entry
 from .forms import EntryForm
 from django.http import HttpResponseRedirect
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 
 def index(request):
+    return render(request, 'myapp/index.html')
+
+def calendar(request):
     entries = Entry.objects.all()
     endict = {'entries':entries}
-    return render(request, 'myapp/index.html', endict)
+    return render(request, 'myapp/calendar.html', endict)    
 
 def details(request,pk):
     entry = Entry.objects.get(id=pk)
@@ -40,5 +44,20 @@ def delete(request,pk):
 	    entry = get_object_or_404(Entry,pk=pk)
 	    entry.delete()
 	return HttpResponseRedirect('/')
+
+def signup(request): 
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request,user)
+            return redirect('/calendar')
+    else:
+        form = UserCreationForm()    
+
+    return render(request, 'registration/signup.html', {'form' : form })
 
 
