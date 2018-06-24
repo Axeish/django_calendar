@@ -15,7 +15,8 @@
 	{% for field in form %}
 	   {{ field.error }}
 	   <label>{{ field.label }}</label>
-	   <input placeholder="{{ field.label }}" name="{{ field.name }}" class="form-control" />
+	   <input type ="{% if field.label == 'Date' %}date{% else %}input{% endif %}"
+	   value="{% if field.label == 'Date' %}06/07/1989{% else %}" "{% endif %}" placeholder="{{ field.label }}" name="{{ field.name }}" class="form-control" />
 	  {% endfor %} 
 	
         <button class="btn btn-success" type='submit'>Submit</button>	

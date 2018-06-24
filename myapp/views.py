@@ -39,7 +39,7 @@ def add(request):
                 date=date,
                 description=description,
                 ).save()
-            return HttpResponseRedirect('/')      
+            return HttpResponseRedirect('/calendar')      
     else:
         form = EntryForm()
 
