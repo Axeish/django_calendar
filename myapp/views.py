@@ -53,6 +53,9 @@ def delete(request,pk):
 	    entry.delete()
 	return HttpResponseRedirect('/')
 
+
+    
+
 def signup(request): 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
